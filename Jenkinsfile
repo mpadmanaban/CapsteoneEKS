@@ -5,13 +5,7 @@ pipeline {
 			steps {
 				withAWS(region:'us-east-2', credentials:'jenkins-aws') {
 					sh '''
-						eksctl create cluster \
-						--name capstonebluecluster \						
-						--nodegroup-name standard-workers \
-						--node-type t2.small \
-						--nodes 1 \
-						--nodes-min 1 \
-						--nodes-max 3 \						
+						eksctl create cluster -f blue-cluster.yaml
 					'''
 				}
 			}
@@ -21,7 +15,7 @@ pipeline {
 			steps {
 				withAWS(region:'us-east-2', credentials:'jenkins-aws') {
 					sh '''
-						aws eks --region us-east-2 update-kubeconfig --name capstonebluecluster
+						aws eks --region us-east-2 update-kubeconfig --name blue-cluster
 					'''
 				}
 			}
@@ -31,13 +25,7 @@ pipeline {
 			steps {
 				withAWS(region:'us-east-2', credentials:'jenkins-aws') {
 					sh '''
-						eksctl create cluster \
-						--name capstonegreencluster \						
-						--nodegroup-name standard-workers \
-						--node-type t2.small \
-						--nodes 1 \
-						--nodes-min 1 \
-						--nodes-max 3 \						
+						eksctl create cluster -f green-cluster.yaml
 					'''
 				}
 			}
@@ -47,7 +35,7 @@ pipeline {
 			steps {
 				withAWS(region:'us-east-2', credentials:'jenkins-aws') {
 					sh '''
-						aws eks --region us-east-2 update-kubeconfig --name capstonegreencluster
+						aws eks --region us-east-2 update-kubeconfig --name green-cluster
 					'''
 				}
 			}
