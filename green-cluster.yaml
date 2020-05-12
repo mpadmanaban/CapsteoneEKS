@@ -11,6 +11,5 @@ nodeGroups:
     instanceName: eksgreen
     desiredCapacity: 1
     ssh:
-		publicKeyPath: JenkinsS3
-		allow: true
-	
+        publicKeyPath: JenkinsS3
+        allow: true

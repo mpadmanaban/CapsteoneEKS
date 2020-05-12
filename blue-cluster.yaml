@@ -8,8 +8,8 @@ metadata:
 nodeGroups:
   - name: ng-blue
     instanceType: t2.small
-	instanceName: eksblue
+    instanceName: eksblue
     desiredCapacity: 1
     ssh:
-		publicKeyPath: JenkinsS3
-		allow: true
+        publicKeyPath: JenkinsS3
+        allow: true
